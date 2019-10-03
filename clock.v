@@ -7,14 +7,13 @@
 
 module clock(
     input wire clk,
-    input wire reset,
     input wire[2:0] msr,
     output wire[7:0] shape,
     output wire[3:0] choose_light_sig
     );
     
     wire clk_s, encoder_reset_sig;
-    wire[2:0] operate_sig;
+    wire[1:0] operate_sig;
     wire[3:0] mX, mU, sX, sU;
 
     encoder encoder(msr, encoder_reset_sig, operate_sig);

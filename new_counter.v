@@ -54,36 +54,35 @@ module counter(
         
         if (counts == `hertz) begin// Carry on numbers!!!
             counts = 1;
-                if (dis_sU == 4'd9) begin // unit is nine, needs carry
-                    if (dis_sX == 4'd5) begin// tens is four, needs carry
-                        if (dis_mU == 4'd9) begin
-                            if (dis_mX == 4'd5) begin// full counter space, reset.
-                                dis_mX <= 0;
-                                dis_mU <= 0;
-                                dis_sX <= 0;
-                                dis_sU <= 0;
-                            end
-                            else begin// mU needs carry to mX, and another minute in.
-                                dis_sU <= 0;
-                                dis_sX <= 0;
-                                dis_mU <= 0;
-                                dis_mX <= dis_mX + 1;
-                            end
+            if (dis_sU == 4'd9) begin // unit is nine, needs carry
+                if (dis_sX == 4'd5) begin// tens is four, needs carry
+                    if (dis_mU == 4'd9) begin
+                        if (dis_mX == 4'd5) begin// full counter space, reset.
+                            dis_mX <= 0;
+                            dis_mU <= 0;
+                            dis_sX <= 0;
+                            dis_sU <= 0;
                         end
-                        else begin // mU don't need carry, but another minute in.
+                        else begin// mU needs carry to mX, and another minute in.
                             dis_sU <= 0;
                             dis_sX <= 0;
-                            dis_mU <= dis_mU + 1;
+                            dis_mU <= 0;
+                            dis_mX <= dis_mX + 1;
                         end
                     end
-                    else begin// sX don't need carry
+                    else begin // mU don't need carry, but another minute in.
                         dis_sU <= 0;
-                        dis_sX <= dis_sX + 1;
+                        dis_sX <= 0;
+                        dis_mU <= dis_mU + 1;
                     end
                 end
-                else begin// no carry
-                    dis_sU <= dis_sU + 1;
+                else begin// sX don't need carry
+                    dis_sU <= 0;
+                    dis_sX <= dis_sX + 1;
                 end
+            end
+            else begin// no carry
+                dis_sU <= dis_sU + 1;
             end
         end
         else begin
