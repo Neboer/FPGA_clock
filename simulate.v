@@ -16,6 +16,6 @@ module simulation();
             clk = ~clk;
         end
     
-    design_top design_top(clk, reset, which_light, digit_shape);
+    design_top design_top(clk, 1'b0, 1'b0, 1'b0, which_light, digit_shape);
 
 endmodule

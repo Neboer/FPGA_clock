@@ -2,7 +2,7 @@
 `define sec_to_zero 2'b01
 `define clock_reset 2'b11
 `define no_operation 2'b00
-`define hertz 30'd50000000
+`define hertz 30'd5000
 
 module counter(
     input wire clk,
