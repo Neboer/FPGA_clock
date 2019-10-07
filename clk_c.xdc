@@ -1,8 +1,13 @@
 set_property IOSTANDARD LVTTL [get_ports sys_clk_i]
 set_property PACKAGE_PIN N11 [get_ports sys_clk_i]
 
-set_property IOSTANDARD LVTTL [get_ports ext_rst_n]
-set_property PACKAGE_PIN M2 [get_ports ext_rst_n]
+set_property IOSTANDARD LVTTL [get_ports all_reset]
+set_property PACKAGE_PIN M2 [get_ports all_reset]
+
+set_property IOSTANDARD LVTTL [get_ports {minute_add}]
+set_property PACKAGE_PIN T10 [get_ports {minute_add}]
+set_property IOSTANDARD LVTTL [get_ports {second_to_zero}]
+set_property PACKAGE_PIN R10 [get_ports {second_to_zero}]
 
 set_property IOSTANDARD LVTTL [get_ports {dtube_cs_n[0]}]
 set_property PACKAGE_PIN M12  [get_ports {dtube_cs_n[0]}]
