@@ -1,7 +1,6 @@
-`include "new_counter.v"
+`include "counter.v"
 `include "encoder.v"
 `include "display.v"
-`timescale 1ns / 1ps
 
 
 
@@ -12,7 +11,7 @@ module clock(
     output wire[3:0] choose_light_sig
     );
     
-    wire clk_s, encoder_reset_sig;
+    wire encoder_reset_sig;
     wire[1:0] operate_sig;
     wire[3:0] mX, mU, sX, sU;
 

@@ -10,23 +10,21 @@ module encoder(
     // res  11
     // nor  00
     always @* begin
+        if (msr) begin
+            if (msr[2]) begin
+                operate = 2'b10;
+            end
 
-        if (encoder_reset) begin
+            if (msr[1]) begin
+                operate = 2'b01;
+            end
+
+            if (msr[0]) begin
+                operate = 2'b11;
+            end
+        end
+        else if (encoder_reset) begin
             operate = 0;
         end
-
-        if (msr[2]) begin
-            operate = 2'b10;
-        end
-
-        if (msr[1]) begin
-            operate = 2'b01;
-        end
-
-        if (msr[0]) begin
-            operate = 2'b11;
-        end
-
-end
-
+    end
 endmodule

@@ -1,4 +1,5 @@
 `include "design_top.v"
+`timescale 1ms/100ns
 
 module simulation();
     reg clk;
@@ -9,13 +10,16 @@ module simulation();
     initial begin
         clk = 0;
         reset = 0;
+        forever #0.5 clk = ~clk;
     end
 
-    always #0.001
-        begin
-            clk = ~clk;
-        end
+    initial begin
+        #9800
+        reset = 1;
+        #1500
+        reset = 0;
+    end
     
-    design_top design_top(clk, 1'b0, 1'b0, 1'b0, which_light, digit_shape);
+    design_top design_top(clk, 1'b0, 1'b0, reset, which_light, digit_shape);
 
 endmodule

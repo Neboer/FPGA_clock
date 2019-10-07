@@ -2,7 +2,7 @@
 `define sec_to_zero 2'b01
 `define clock_reset 2'b11
 `define no_operation 2'b00
-`define hertz 30'd5000
+`define hertz 10'd1000
 
 module counter(
     input wire clk,
@@ -22,7 +22,7 @@ module counter(
     always@(posedge clk) begin
         if (operation) begin
             case (operation)
-                2'b10 : 
+                2'b10 : // minute add
                     begin
                         if (dis_mU == 9) begin
                             if (dis_mX == 5) begin
@@ -33,12 +33,12 @@ module counter(
                         end
                         dis_mU = dis_mU + 1;
                     end
-                2'b01 : 
+                2'b01 : // second to zero
                     begin
                         dis_sU = 0;
                         dis_sX = 0;
                     end
-                2'b11 :
+                2'b11 : // reset
                     begin
                         dis_sU = 0;
                         dis_sX = 0;
@@ -46,6 +46,7 @@ module counter(
                         dis_mX = 0;
                     end
             endcase
+            counts = 0;
             encoder_reset = 1;
         end
         else begin
